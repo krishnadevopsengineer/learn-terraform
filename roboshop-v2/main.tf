@@ -36,14 +36,11 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = var.security_groups
 
   tags = {
-    Name = var.components[each.key].name
-    //Name = lookup(var.components, lookup(each.value, "name", null ), null )
+    //Name = var.components[each.key].name
+    Name = lookup(each.value, "name", null )
   }
 }
 
-output "test" {
-  value = lookup(var.components, "frontend", "null")
-}
 
 //resource "aws_route53_record" "record" {
 //  zone_id = var.components
