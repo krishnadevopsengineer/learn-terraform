@@ -42,7 +42,8 @@ resource "aws_instance" "instance" {
 
 
 resource "aws_route53_record" "record" {
-  zone_id = var.components
+  for_each = var.components
+  zone_id = var.zone_id
   name    = "${lookup(each.value, "name", null )}.kdevops72.online"
   type    = "A"
   ttl     = 30
