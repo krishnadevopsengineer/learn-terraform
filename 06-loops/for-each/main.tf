@@ -12,5 +12,5 @@ variable "components" {
 
 resource "aws_security_group" "allow_tls" {
   for_each = length(var.components)
-  name = lookup(var.components, each.value["name"], null )
+  name = lookup(var.components, each.value["name"], null)
 }
