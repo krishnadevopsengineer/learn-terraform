@@ -29,16 +29,21 @@ variable "components" {
   }
 }
 
-resource "aws_instance" "instance" {
-  for_each = var.components
-  ami           = var.ami
-  instance_type = var.instance_type
-  vpc_security_group_ids = var.security_groups
+//resource "aws_instance" "instance" {
+//  for_each = var.components
+//  ami           = var.ami
+//  instance_type = var.instance_type
+//  vpc_security_group_ids = var.security_groups
 
-  tags = {
-    Name = lookup(var.components, each.key, null )
-  }
+//  tags = {
+//    Name = lookup(var.components, each.key, null )
+//  }
+//}
+
+output "test" {
+  value = lookup(var.components, "frontend", "null")
 }
+
 //resource "aws_route53_record" "record" {
 //  zone_id = var.components
 //  name    = "frontend-dev.kdevops72.online"
@@ -47,6 +52,6 @@ resource "aws_instance" "instance" {
 //  records = [lookup(aws_instance.instance, each.key[""]]
 //}
 
-output "instances" {
-  value = aws_instance.instance
-}
+//output "instances" {
+//  value = aws_instance.instance
+//}
